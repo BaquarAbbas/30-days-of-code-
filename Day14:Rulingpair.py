@@ -11,26 +11,20 @@ Example 1:
 
 
 
-class Solution:    
-    def RulingPair(self, arr, n): 
-    	# Your code goes here
-        def findSum(x):
-                temp = 0
-                while x > 0:
-                        temp += x%10
-                        x = x//10
-                return temp
-                
-        
-        dt = {}
+class Solution:
+    def digitSum(self,num):
+        ans = 0 
+        for i in str(num):
+            ans += int(i)
+        return ans  
+    def RulingPair(self,arr,n):
         ans = -1
-        arr.sort()
-        for x in arr:
-                digitsum = findSum(x)
-            
-                if digitsum in dt:
-                        ans = max(ans,x+dt[digitsum][-1])
-                else:
-                        dt[digitsum] = []
-                dt[digitsum].append(x)
-        return ans
+        dic = dict() 
+        for i in arr:
+            sm = self.digitSum(i) 
+            if sm in dic:
+                ans = max(ans,i+dic[sm])
+                dic[sm] = max(dic[sm],i)
+            else:
+                dic[sm] = i 
+        return ans 
