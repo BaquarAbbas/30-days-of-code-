@@ -16,6 +16,9 @@ class Solution:
     def Reduced_String(self, k, s):
         count = [] 
         stack = "" 
+        emp = ''
+        if k == 1:
+            return emp 
         for i in range(len(s)):
             if i == 0 or not stack or s[i]  != stack[-1]:
                 count.append(1) 
@@ -28,3 +31,26 @@ class Solution:
                 else:
                     count .append(recount)
         return "".join(map(lambda x,y:x*y,count,stack))
+    
+#Solution2
+class Solution:
+    def Reduced_String(self, k, s):
+        stack = [] 
+        emp = ''
+        if k == 1:
+            return emp  
+        for i in range(len(s)):
+            if stack and s[i] == stack[-1][0]:
+                stack[-1][1] += 1 
+                if stack[-1][1] == k:
+                    stack.pop()
+            else:
+                stack.append([s[i],1])
+                
+        out = '' 
+        while stack:
+            char,freq = stack.pop() 
+            out += (char * freq) 
+            
+        return out[::-1]
+
