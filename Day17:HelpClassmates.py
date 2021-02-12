@@ -31,3 +31,19 @@ class Solution:
                     res[i] = arr[j]
                     break
         return res 
+   
+#Solution2 
+class Solution:
+    def help_classmate(self, arr, n):
+        stack =[] 
+        ans = [] 
+        for x in arr[::-1]:
+            while stack and stack[-1] >= x:
+                stack.pop()
+            if stack:
+                ans.append(stack[-1]) 
+            else:
+                ans.append(-1) 
+            stack.append(x) 
+            
+        return ans[::-1]
