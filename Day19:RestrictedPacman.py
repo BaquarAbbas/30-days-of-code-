@@ -21,3 +21,20 @@ and so on.
 visited. Therefore the candies at these two 
 positions will be left on the board. 
 '''
+#Solution
+class Solution: 
+    def candies(self,m,n): 
+        queue = [] 
+        x = ((m*n) - m - n)
+        queue.append(x) 
+        count = 0
+        while len(queue) > 0:
+            curr = queue[0] 
+            queue.remove(queue[0]) 
+            count += 1 
+            
+            if curr - m > 0:
+                queue.append(curr-m) 
+            if curr - n > 0:
+                queue.append(curr - n) 
+        return count 
