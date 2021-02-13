@@ -47,3 +47,13 @@ class Solution:
             stack.append(x) 
             
         return ans[::-1]
+#Solution3 
+class solution:
+    def help_classmates(self,arr,n):
+        ans = [-1]*n
+        stack = [] 
+        for i in range(n):
+            while len(stack) and arr[i] < arr[stack[-1]]:
+                ans[stack.pop()] = arr[i] 
+            stack.append(i)
+        return ans 
