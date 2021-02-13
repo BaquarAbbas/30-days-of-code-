@@ -21,7 +21,7 @@ and so on.
 visited. Therefore the candies at these two 
 positions will be left on the board. 
 '''
-#Solution
+#Solution1
 class Solution: 
     def candies(self,m,n): 
         queue = [] 
@@ -38,3 +38,8 @@ class Solution:
             if curr - n > 0:
                 queue.append(curr - n) 
         return count 
+#Solution2
+class Solution: 
+    def candies(self,m,n): 
+        res = m*n -(m+n) 
+        return res//2 + 1
