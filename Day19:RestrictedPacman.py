@@ -22,22 +22,22 @@ visited. Therefore the candies at these two
 positions will be left on the board. 
 '''
 #Solution1
-class Solution: 
-    def candies(self,m,n): 
-        queue = [] 
-        x = ((m*n) - m - n)
-        queue.append(x) 
-        count = 0
-        while len(queue) > 0:
-            curr = queue[0] 
-            queue.remove(queue[0]) 
-            count += 1 
+class Solution:
+    def restrictedPacman(self,m,n):
+        max_num = m*n - m -n 
+        lis = [max_num] 
+        num_set = {max_num}
+        while lis:
+            curr = lis[0] 
+            lis.remove(lis[0]) 
             
-            if curr - m > 0:
-                queue.append(curr-m) 
-            if curr - n > 0:
-                queue.append(curr - n) 
-        return count 
+            if curr - m > 0 and curr-m not in num_set:
+                num_set.add(curr-m)
+                lis.append(curr-m)
+            if curr - n > 0 and curr-n not in num_set:
+                num_set.add(curr-m)
+                lis.append(curr-m)
+        return len(num_set) 
 #Solution2
 class Solution: 
     def candies(self,m,n): 
